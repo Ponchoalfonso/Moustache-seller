@@ -3,35 +3,30 @@ import { Sale } from './sale';
 
 export class Client {
 
-  id: number;
-  name: string;
-  genderIndex: number;
-  birthdate: Date;
-  sales: Sale[];
-  get gender() {
-    const genders: string[] = ['Hombre', 'Mujer'];
-    return genders[this.genderIndex];
+  public id: number;
+  public name: string;
+  public lastName: string;
+  private _gender: string;
+  public set gender(index: string) {
+    const genders: string[] = ['Masculino', 'Femenino'];
+
+    this._gender = genders[parseInt(index, 10)];
   }
-  get age() {
+  public get gender() {
+    return this._gender;
+  }
+  public birthdate: Date;
+  public get age() {
     const age: number = (Date.now() - this.birthdate.getMilliseconds()) / (1000 * 3600 * 24) / 365;
 
     return age;
   }
+  public email: string;
+  public timestamp: Date;
+  public sales_id: number[];
 
-  constructor(id: number, name: string, genderIndex: number, birthdate: Date) {
-    this.id = id;
-    this.name = name;
-    this.genderIndex = genderIndex;
-    this.birthdate = birthdate;
-    this.sales = [];
-  }
-
-  addSale(sale: Sale): void {
-    this.sales.push(sale);
-  }
-
-  addSales(sales: Sale): void {
-    this.sales.concat(sales);
+  public constructor() {
+    this.sales_id = [];
   }
 
 }

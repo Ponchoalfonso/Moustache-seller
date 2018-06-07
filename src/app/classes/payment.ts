@@ -1,9 +1,12 @@
 export class Payment {
 
+    public id: number;
     public amount: number;
     public givenAmount: number;
-    public taxPercent: number;
+    private taxPercent: number;
     public isPaid: boolean;
+    public validationDate: Date;
+    public timestamp: Date;
     public get taxes(): number {
         return this.amount * this.taxPercent / 100;
     }
