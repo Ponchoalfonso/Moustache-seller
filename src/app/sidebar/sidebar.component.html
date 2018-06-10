@@ -1,0 +1,13 @@
+<div [@state]="sidebar.state" class="hidden-options app-navigation">
+  <span (click)="this.toggle()"  id="close" class="icon-cancel-circle"></span>
+  <div class="app-title">
+      <h6>Moustache seller</h6>
+      <img src="assets/images/logo.png" alt="">
+  </div>
+  <ul>
+      <a href=""><li class="selected"><span class="icon-cart"></span>Punto de ventas</li></a>
+      <a href="/products"><li><span class="icon-price-tags"></span>Productos</li></a>
+      <a href=""><li><span class="icon-user"></span>Clientes</li></a>
+      <a href=""><li><span class="icon-profile"></span>Ventas</li></a>
+  </ul>
+</div>

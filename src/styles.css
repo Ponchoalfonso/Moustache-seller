@@ -1,1 +1,265 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Global */
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,700');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+}
+
+html {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+app-root, app-point-sales, app-product-index {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+  background-color: #171e2b;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  background: #8d8d8d;
+}
+
+::-webkit-scrollbar-track {
+  transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  background: #333333;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* * * * Header * * * */
+header {
+  margin: 0;
+  padding: 0;
+  min-height: 48px;
+  background-color: #171e2b;
+  color: white;
+}
+
+header, header .title, header .activities-bar {
+  display: flex;
+}
+
+header ul {
+  margin: 0;
+  padding: 0;
+}
+
+header ul li {
+  display: inline-block;
+}
+
+/* Title */
+
+header .title {
+  text-align: left;
+  padding: 10px;
+  width: 30%;
+}
+
+header .title h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+
+header .title span {
+  font-size: 28px;
+  margin: auto 0 auto 0;
+  margin-right: 8px;
+}
+
+header .zone-name {
+  text-align: center;
+  margin: 0 auto 0 auto;
+}
+
+header .zone-name h2 {
+  line-height: 48px;
+  font-size: 19px;
+  margin: 0;
+  padding: 0;
+}
+
+/* * * * Activities bar * * * */
+
+.activities-bar {
+  width: 70%;
+}
+
+.sale-button {
+  transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  cursor: pointer;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.activities-bar ul {
+  margin-top: 4px;
+  border-collapse: separate;
+  border-spacing: 4px 0;
+}
+
+/* Sale operations */
+
+.activities-bar .sales-operations .sale-button {
+  background-color: rgba(102, 102, 102, 0.4);
+}
+
+.activities-bar .sales-operations .sale-button:hover {
+  background-color: rgba(102, 102, 102, 0.9);
+}
+
+/* Active sales */
+
+.activities-bar .active-sales {
+  max-width: 60%;
+  overflow-x: overlay;
+  white-space: nowrap;
+}
+
+.activities-bar .active-sales .sale-button {
+  background-color: rgba(102, 102, 102, 0.99);
+  font-weight: bold;
+}
+
+.activities-bar .active-sales .sale-button:hover {
+  background-color: #ecececd2;
+}
+
+.activities-bar .active-sales .selected {
+  background-color: #ececec;
+  text-align: center;
+  width: 90px;
+  min-width: 90px;
+}
+
+.activities-bar .active-sales .selected:hover {
+  background-color: #ececec;
+}
+
+.activities-bar .active-sales .selected .sale-id, .activities-bar .active-sales .selected .sale-time {
+  margin: auto 4px auto 4px;
+  line-height: 28px;
+}
+
+.activities-bar .active-sales .selected .sale-id {
+  float: left;
+  display: block;
+  color: #ececec;
+  background-color: #292929;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+}
+
+.activities-bar .active-sales .selected .sale-time {
+  color: black;
+  font-size: 14px;
+}
+
+/* User options */
+
+.activities-bar .user-options {
+  margin-left: auto;
+}
+
+.activities-bar .user-options li {
+  margin: 8px;
+}
+
+.activities-bar .user-options .toggle-options {
+  font-size: 20px;
+  cursor: pointer;
+}
+/* * * * Navigation * * * */
+
+.navigation-wrapper {
+  background-color: #eeeef8;
+  border-bottom: solid #e3e3ec 1px;
+}
+
+.navigation {
+  width: 65%;
+  margin: auto;
+  padding: 30px 0 0 0;
+}
+
+.navigation ul {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 1px;
+  margin-bottom: auto;
+}
+
+.navigation ul li {
+  margin: 0;
+  padding: 10px 20px 10px 20px;
+  display: inline-block;
+  color: #666666;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.navigation ul li:hover {
+  color: black;
+}
+
+.navigation ul .selected{
+  border: solid #e3e3ec 1px;
+  border-bottom: white solid 2px;
+  border-top: solid #171e2b 2px;
+  background-color: white;
+  color: black;
+}
+
+.content-area {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    flex: 1 1 auto;
+    background-color: white;
+}

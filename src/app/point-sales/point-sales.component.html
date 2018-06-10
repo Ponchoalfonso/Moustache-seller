@@ -1,0 +1,112 @@
+
+<header>
+  <div class="title">
+    <span class="icon-hipster"></span>
+    <h1>Punto de ventas</h1>
+  </div>
+  <nav class="activities-bar">
+    <div class="sales-operations">
+      <ul>
+        <li class="sale-button"><span class="icon-plus"></span></li>
+        <li class="sale-button"><span class="icon-minus"></span></li>
+      </ul>
+    </div>
+    <ul class="active-sales">
+      <li class="sale-button selected"><span class="sale-id">1</span><span class="sale-time">hh:mm</span></li>
+      <li class="sale-button"><span class="sale-id">2</span></li>
+    </ul>
+    <ul class="user-options">
+      <li>Alfonso Valencia</li>
+      <li class="toggle-options" (click)="this.toggle()"><span class="icon-menu"></span></li>
+    </ul>
+  </nav>
+</header>
+<div class="point-sales" fxFlexFill fxLayout="column">
+  <div class="sale-keyboard-wrapper">
+    <section class="current-sale">
+      <div class="sale">
+        <div class="added-products">
+          <div class="product selected">
+            <h2>Producto 1</h2>
+            <p>$<span class="prduct-total">34.00</span></p>
+            <ul class="characteristics">
+              <li><span class="quantity">2</span><span class="unit">(u)</span></li>
+              <li>a $<span class="price">17.00</span> <span class="per-unit">c/u</span></li>
+            </ul>
+          </div>
+          <div class="product">
+            <h2>Producto 2</h2>
+            <p>$<span class="prduct-total">48.00</span></p>
+              <ul class="characteristics">
+                <li><span class="quantity">4</span><span class="unit">(u)</span></li>
+                <li>a $<span class="price">12.00</span> <span class="per-unit">c/u</span></li>
+              </ul>
+          </div>
+        </div>
+        <div class="totals">
+          <ul>
+            <li class="total">Total: $<span id="sale-total">95.12</span></li>
+            <li>IVA: $<span id="taxes">13.12</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="key-board">
+      <div class="key-board-wrapper">
+        <table class="keys">
+          <tbody>
+            <tr>
+              <td colspan="3" class="corner-1 sale-client"><span class="icon-user"></span>Cliente</td>
+              <td class="num-key">1</td>
+              <td class="num-key">2</td>
+              <td class="num-key">3</td>
+              <td rowspan="2" class="corner-2">Cant.</td>
+            </tr>
+            <tr>
+              <td rowspan="3" colspan="3" id="pay"class="corner-4"><span class="icon-circle-right"></span><span>Pagar</span></td>
+              <td class="num-key">4</td>
+              <td class="num-key">5</td>
+              <td class="num-key">6</td>
+            </tr>
+            <tr>
+              <td class="num-key">7</td>
+              <td class="num-key">8</td>
+              <td class="num-key">9</td>
+              <td rowspan="2" class="corner-3">Precio</td>
+            </tr>
+            <tr>
+              <td class="num-key bottom">.</td>
+              <td class="num-key bottom">0</td>
+              <td class="num-key bottom"><span class="icon-backspace"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+  <section class="products-menu">
+      <div class="menu-tree">
+        <ul class="branch">
+          <li><span class="icon-home"></span></li>
+        </ul>
+      </div>
+      <div class="cateogories">
+        <div class="category">
+          <!-- product image !-->
+          <h5><!-- Productname !--></h5>
+        </div>
+      </div>
+      <div class="products">
+        <div class="product">
+          <!-- img src="images/image-1.jpg" alt="" !-->
+          <div class="img">
+            <span class="icon-images"></span>
+          </div>
+          <div class="product-info">
+            <h5>Producto 1</h5>
+            <p>$<span>17.00</span></p>
+          </div>
+        </div>
+      </div>
+  </section>
+</div>

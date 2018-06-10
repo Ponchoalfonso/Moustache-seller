@@ -1,0 +1,49 @@
+<header>
+    <div class="title">
+        <span class="icon-hipster"></span>
+        <h1>Moustache seller</h1>
+    </div>
+    <nav class="activities-bar">
+        <div class="zone-name">
+            <h2>{{zone}}s</h2>
+        </div>
+        <ul class="user-options">
+        <li>Alfonso Valencia</li>
+        <li class="toggle-options" (click)="this.toggle()"><span class="icon-menu"></span></li>
+        </ul>
+    </nav>
+</header>
+<div class="content-area">
+  <div class="navigation-wrapper">
+      <nav class="navigation">
+          <ul>
+              <a href="/products"><li class="selected"><span class="icon-profile"></span> Registros</li></a>
+              <a href="/products/new"><li><span class="icon-user-plus"></span> Nuevo</li></a>
+          </ul>
+      </nav>
+  </div>
+  <div class="indexer-wrapper">
+      <section class="indexer-area">
+          <div class="indexer-title">
+              <h3><span class="icon-file-text"></span> Listando {{zone}}s</h3>
+          </div>
+          <div class="indexer">
+              <div *ngFor="let product of products" class="record">
+                  <div class="information">
+                      <p>Nombre: <span>{{product.name}}</span></p>
+                      <p>Precio: <span>{{product.price}}</span></p>
+                      <p>Medida de venta: <span class="age">{{product.measureType}}</span></p>
+                  </div>
+                  <div class="buttons">
+                      <div class="button">
+                          <a href="/products/{{product.id}}"><span class="icon-eye"></span> Ver</a>
+                      </div>
+                      <div class="button">
+                          <a href=""><span class="icon-bin"></span> Eliminar</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+  </div>
+</div>
