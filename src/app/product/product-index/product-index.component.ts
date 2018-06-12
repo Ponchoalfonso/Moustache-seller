@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../classes/product';
 import { ProductService } from '../../services/product.service';
+// Sidebar control
 import { sidebar } from '../../sidebar/sidebar.component';
 
 @Component({
@@ -10,7 +11,6 @@ import { sidebar } from '../../sidebar/sidebar.component';
 })
 export class ProductIndexComponent implements OnInit {
 
-  zone = 'Producto';
   products: Product[];
   sidebar = sidebar;
 
@@ -22,6 +22,10 @@ export class ProductIndexComponent implements OnInit {
 
   getProducts(): void {
     this.productService.getProducts().subscribe(products => this.products = products);
+  }
+
+  deleteProduct(id: number): void {
+    this.productService.deleteProduct(id);
   }
 
   toggle() {

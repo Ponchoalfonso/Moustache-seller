@@ -1,6 +1,89 @@
-body {
-  background-color: white;
+/* * * * Show Area * * * */
+
+.show-wrapper {
+    flex: 1 1 auto;
 }
+
+.show-wrapper {
+    width: 65%;
+    margin: auto;
+}
+
+.show-area {
+    margin: 50px auto 50px auto;
+    border-radius: 2px;
+    border: solid #e3e3ec 1px;
+}
+
+.show-area .show-title {
+    background-color: #eeeef8;
+    border-bottom: solid #e3e3ec 1px;
+}
+
+.show-area .show-title h3 {
+    margin: 0;
+    padding: 12px 0 12px 30px;
+    font-size: 16px;
+}
+
+.show-area .show-title span {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.show-area .show {
+    padding: 20px;
+}
+
+.show-area .field {
+    margin-bottom: 30px;
+}
+
+.show-area .field label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.show-area .field p{
+    padding: 4px;
+    border-radius: 2px;
+    border: solid #e3e3ec 1px;
+    background-color: #f8f8fc;
+    width: 250px;
+}
+
+.show .buttons-wrapper {
+    display: flex;
+}
+
+.show .buttons {
+    display: flex;
+    margin-left: auto;
+}
+
+.show .button {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.show .button a, .show .button button {
+    transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    color: #666666;
+    display: block;
+    text-decoration: none;
+    background-color: #eeeef8;
+    border: #e3e3ec solid 1px;
+    padding: 8px;
+    border-radius: 2px;
+}
+
+.show .button a:hover, .show .button button:hover {
+    background-color: #e3e3ec;
+}
+
 /* * * * Indexer * * * */
 
 .indexer-wrapper {
@@ -13,6 +96,10 @@ body {
     margin: 50px auto 50px auto;
     border-radius: 2px;
     border: solid #e3e3ec 1px;
+}
+
+.indexer-area .indexer {
+  width: 100%;
 }
 
 .indexer-area .indexer-title {

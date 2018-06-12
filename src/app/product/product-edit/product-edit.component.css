@@ -1,0 +1,107 @@
+/* * * * Form Area * * * */
+
+.form-wrapper {
+    flex: 1 1 auto;
+}
+
+.form-wrapper {
+    width: 65%;
+    margin: auto;
+}
+
+.form-area {
+    margin: 50px auto 50px auto;
+    border-radius: 2px;
+    border: solid #e3e3ec 1px;
+}
+
+.form-area .form-title {
+    background-color: #eeeef8;
+    border-bottom: solid #e3e3ec 1px;
+}
+
+.form-area .form-title h3 {
+    margin: 0;
+    padding: 12px 0 12px 30px;
+    font-size: 16px;
+}
+
+.form-area .form-title span {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.form-area .form {
+    padding: 20px;
+}
+
+.form-area .field {
+    margin-bottom: 30px;
+}
+
+.form-area .field label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-area .field input, .form-area .field select, .form-area .field p {
+    padding: 4px;
+    border-radius: 2px;
+    border: solid #e3e3ec 1px;
+    background-color: #f8f8fc;
+}
+
+.form-area .field p {
+  display: inline-block;
+  margin: 0;
+}
+
+.form-area .field input {
+    width: 250px;
+}
+
+.form-area .submit input {
+    transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    background-color: #eeeef8;
+    border: solid #e3e3ec 1px;
+    padding: 10px 20px 10px 20px;
+}
+
+.form-area .submit input:hover {
+    background-color: #f8f8fc;
+}
+
+.form .buttons-wrapper {
+    display: flex;
+}
+
+.form .buttons {
+    display: flex;
+    margin-left: auto;
+}
+
+.form .button {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.form .button a, .form .button button {
+    transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    color: #666666;
+    display: block;
+    text-decoration: none;
+    background-color: #eeeef8;
+    border: #e3e3ec solid 1px;
+    padding: 8px;
+    border-radius: 2px;
+}
+
+.form .button a:hover, .form .button button:hover {
+    background-color: #e3e3ec;
+}

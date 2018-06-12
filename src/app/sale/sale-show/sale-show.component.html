@@ -1,0 +1,150 @@
+<header>
+  <div class="title">
+    <span class="icon-hipster"></span>
+    <h1>Moustache seller</h1>
+  </div>
+  <nav class="activities-bar">
+    <div class="zone-name">
+      <h2>Ventas</h2>
+    </div>
+    <ul class="user-options">
+      <li>Alfonso Valencia</li>
+      <li class="toggle-options" (click)="this.toggle()">
+        <span class="icon-menu"></span>
+      </li>
+    </ul>
+  </nav>
+</header>
+<div class="content-area">
+  <div class="navigation-wrapper">
+    <nav class="navigation">
+      <ul>
+        <a routerLink="/sales">
+          <li><span class="icon-profile"></span> Registros</li>
+        </a>
+        <li class="selected">
+          <span class="icon-coin-dollar"></span> Venta sle-
+          <span class="id">{{sale.id}}</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="show-wrapper">
+    <section class="show-area">
+      <div class="show-title">
+        <h3><span class="icon-file-text"></span> Mostrando datos de venta</h3>
+      </div>
+      <div class="show" *ngIf="sale">
+        <div class="field">
+          <label>Fecha</label>
+          <p>{{Formater.dateFormat(sale.timestamp)}}</p>
+        </div>
+        <div class="field">
+          <label>Total</label>
+          <p>
+            {{
+              payment.total
+                .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
+            }}
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="show-area">
+      <div class="show-title">
+        <h3><span class="icon-file-text"></span> Mostrando datos de pago</h3>
+      </div>
+      <div class="show" *ngIf="sale">
+        <div class="field">
+          <label>Fecha validación de pago</label>
+          <p>{{Formater.dateFormat(payment.validationDate)}}</p>
+        </div>
+        <div class="field">
+          <label>Monto a cobrar</label>
+          <p>
+            {{
+              payment.amount
+                .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
+            }}
+          </p>
+        </div>
+        <div class="field">
+          <label>Impuestos (%{{payment.taxPercent}})</label>
+          <p>
+            {{
+              payment.taxes
+                .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
+            }}
+          </p>
+        </div>
+        <div class="field">
+          <label>Monto + IVA</label>
+          <p>
+            {{
+              payment.total
+                .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
+            }}
+          </p>
+        </div>
+        <div class="field">
+          <label>Monto recibido</label>
+          <p>
+            {{
+              payment.givenAmount
+                .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
+            }}
+          </p>
+        </div>
+        <div class="field">
+          <label>Cambio</label>
+          <p>
+            {{
+              payment.change
+                .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
+            }}
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="indexer-wrapper">
+    <section class="indexer-area">
+      <div class="indexer-title">
+          <h3>
+            <span class="icon-file-text"></span>
+            Listando productos de la venta
+          </h3>
+      </div>
+      <div class="indexer">
+        <div *ngFor="let product of products" class="record">
+          <div class="information">
+            <p>Nombre: <span>{{product.name}}</span></p>
+            <p>Precio: $<span>
+              {{
+                product.price.toLocaleString('en-IN', {
+                  style: 'currency', currency: 'MXN'
+                })
+              }} por
+              {{
+                product.measureType
+              }}
+          </span></p>
+            <p>
+              Cantidad:
+              {{
+                sale.productsQuantity[products.indexOf(product)]
+              }}
+          </p>
+          </div>
+          <div class="buttons">
+            <div class="button">
+              <a routerLink="/products/{{product.id}}">
+                <span class="icon-eye"></span> Ver
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

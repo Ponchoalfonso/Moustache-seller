@@ -1,0 +1,57 @@
+<header>
+  <div class="title">
+    <span class="icon-hipster"></span>
+    <h1>Moustache seller</h1>
+  </div>
+  <nav class="activities-bar">
+    <div class="zone-name">
+      <h2>Productos</h2>
+    </div>
+    <ul class="user-options">
+      <li>Alfonso Valencia</li>
+      <li class="toggle-options" (click)="this.toggle()"><span class="icon-menu"></span></li>
+    </ul>
+  </nav>
+</header>
+<div class="content-area">
+  <div class="navigation-wrapper">
+    <nav class="navigation">
+      <ul>
+        <a routerLink="/products"><li><span class="icon-profile"></span> Registros</li></a>
+        <a routerLink="/products/new"><li><span class="icon-plus"></span> Nuevo</li></a>
+        <li class="selected"><span class="icon-user"></span> Producto pdt-<span class="id">{{product.id}}</span></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="show-wrapper">
+    <section class="show-area">
+      <div class="show-title">
+        <h3><span class="icon-file-text"></span> Mostrando producto</h3>
+      </div>
+      <div class="show" *ngIf="product">
+        <div class="buttons-wrapper">
+          <div class="buttons">
+            <div class="button">
+              <a routerLink="/products/{{product.id}}/edit"><span class="icon-pencil"></span> Editar</a>
+            </div>
+            <div class="button">
+              <button (click)="deleteProduct(product.id)"><span class="icon-bin"></span> Eliminar</button>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Nombre</label>
+          <p class="name">{{product.name}}</p>
+        </div>
+        <div class="field">
+          <label>Precio</label>
+          <p class="price">$<span>{{product.price.toFixed(2)}}</span></p>
+        </div>
+        <div class="field">
+          <label>Medida para venta</label>
+          <p><span>{{product.measureType}}</span></p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

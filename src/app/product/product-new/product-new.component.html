@@ -1,0 +1,52 @@
+<header>
+  <div class="title">
+    <span class="icon-hipster"></span>
+    <h1>Moustache seller</h1>
+  </div>
+  <nav class="activities-bar">
+    <div class="zone-name">
+      <h2>Productos</h2>
+    </div>
+    <ul class="user-options">
+      <li>Alfonso Valencia</li>
+      <li class="toggle-options" (click)="this.toggle()"><span class="icon-menu"></span></li>
+    </ul>
+  </nav>
+</header>
+<div class="content-area">
+  <div class="navigation-wrapper">
+    <nav class="navigation">
+      <ul>
+        <a routerLink="/products"><li><span class="icon-profile"></span> Registros</li></a>
+        <a routerLink="/products/new"><li class="selected"><span class="icon-plus"></span> Nuevo</li></a>
+      </ul>
+    </nav>
+  </div>
+  <div class="form-wrapper">
+    <section class="form-area">
+      <div class="form-title">
+        <h3><span class="icon-file-text"></span> Información de nuevo producto</h3>
+      </div>
+      <div class="form" *ngIf="product">
+        <div class="field text-field">
+          <label>Nombre</label>
+          <input [(ngModel)]="product.name">
+        </div>
+        <div class="field number-field">
+          <label>Precio</label>
+          <input [(ngModel)]="product.price" type="number">
+        </div>
+        <div class="field select-field">
+          <label>Medida para venta</label>
+          <select [(ngModel)]="product.measureType">
+            <option value="0">Unidad</option>
+            <option value="1">Granel</option>
+          </select>
+        </div>
+        <div class="submit">
+          <input (click)="this.saveProduct()" type="button" value="Guardar">
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

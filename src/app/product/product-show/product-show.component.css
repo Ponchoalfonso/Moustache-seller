@@ -1,65 +1,72 @@
-body {
-  background-color: white;
-}
-/* * * * Indexer * * * */
+/* * * * Show Area * * * */
 
-.indexer-wrapper {
+.show-wrapper {
     flex: 1 1 auto;
 }
 
-.indexer-area {
+.show-wrapper {
     width: 65%;
     margin: auto;
+}
+
+.show-area {
     margin: 50px auto 50px auto;
     border-radius: 2px;
     border: solid #e3e3ec 1px;
 }
 
-.indexer-area .indexer-title {
+.show-area .show-title {
     background-color: #eeeef8;
     border-bottom: solid #e3e3ec 1px;
 }
 
-.indexer-area .indexer-title h3 {
+.show-area .show-title h3 {
     margin: 0;
     padding: 12px 0 12px 30px;
     font-size: 16px;
 }
 
-.indexer-area .-indexer-title span {
+.show-area .show-title span {
     display: inline-block;
     font-size: 18px;
 }
 
-.indexer .record {
+.show-area .show {
+    padding: 20px;
+}
+
+.show-area .field {
+    margin-bottom: 30px;
+}
+
+.show-area .field label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.show-area .field p{
+    padding: 4px;
+    border-radius: 2px;
+    border: solid #e3e3ec 1px;
+    background-color: #f8f8fc;
+    width: 250px;
+}
+
+.show .buttons-wrapper {
     display: flex;
-    padding: 10px;
-    color: #666666;
 }
 
-.indexer .record .information {
-    display: flex;
-    margin: auto 0 auto 0;
-}
-
-.indexer .record .information h4, .indexer .record .information p {
-    margin: 0;
-    padding: 0;
-    font-weight: normal;
-    margin-right: 20px;
-}
-
-.indexer .record .buttons {
+.show .buttons {
     display: flex;
     margin-left: auto;
 }
 
-.indexer .record .button {
+.show .button {
     display: inline-block;
     margin-left: 10px;
 }
 
-.indexer .record .button a, .indexer .record .button button {
+.show .button a, .show .button button {
     transition: background-color 0.2s ease;
     -moz-transition: background-color 0.2s ease;
     -o-transition: background-color 0.2s ease;
@@ -71,9 +78,8 @@ body {
     border: #e3e3ec solid 1px;
     padding: 8px;
     border-radius: 2px;
-    cursor: pointer;
 }
 
-.indexer .record .button a:hover, .indexer .record .button button:hover {
+.show .button a:hover, .show .button button:hover {
     background-color: #e3e3ec;
 }
