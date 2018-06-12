@@ -20,7 +20,9 @@ html {
   flex-flow: column;
 }
 
-app-root, app-point-sales, app-product-index {
+app-root, app-point-sales, app-product-index, app-product-new,
+app-product-show, app-product-edit, app-sale-index, app-sale-show,
+app-client-index, app-client-show, app-client-new, app-client-eidt {
   display: flex;
   flex-flow: column;
   flex: 1 1 auto;
