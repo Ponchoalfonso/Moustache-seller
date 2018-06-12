@@ -1,6 +1,6 @@
 export class Payment {
 
-  private static last_index: number;
+  public static last_index: number;
 
   public id: number;
   public amount: number;
@@ -20,12 +20,6 @@ export class Payment {
   }
 
   public constructor() {
-    if (Payment.last_index >= 1) {
-      Payment.last_index++;
-    } else {
-      Payment.last_index = 1;
-    }
-
     this.taxPercent = 16;
     this.isPaid = false;
   }
@@ -34,6 +28,7 @@ export class Payment {
       this.givenAmount = givenAmount;
       if (this.change >= 0) {
           this.isPaid = true;
+          this.validationDate = new Date();
       }
 
       return this.isPaid;

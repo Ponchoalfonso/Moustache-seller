@@ -1,8 +1,6 @@
-import { Product } from './product';
-
 export class Category {
 
-  private static last_index: number;
+  public static last_index: number;
 
   public id: number;
   public name: string;
@@ -10,13 +8,7 @@ export class Category {
   public timestamp: Date;
 
   public constructor() {
-    if (Category.last_index >= 1) {
-      Category.last_index++;
-    } else {
-      Category.last_index = 1;
-    }
-
-      this.products_id = new Array();
+    this.products_id = new Array();
   }
 
 }

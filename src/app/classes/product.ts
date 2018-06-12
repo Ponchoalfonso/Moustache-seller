@@ -1,6 +1,6 @@
 export class Product {
 
-  private static last_index: number;
+  public static last_index: number;
 
   public id: number;
   public name: string;
@@ -16,12 +16,6 @@ export class Product {
   }
   public timestamp: Date;
 
-  public constructor() {
-    if (Product.last_index >= 1) {
-      Product.last_index++;
-    } else {
-      Product.last_index = 1;
-    }
-  }
+  public constructor() { }
 
 }
