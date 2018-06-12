@@ -20,14 +20,35 @@ export class CategoryService {
   }
 
   getCategory(id: number): Observable<Category> {
-    return of(this.categories.find(category => category.id === id));
+    const category = this.categories.find(c => c.id === id);
+
+    return of(category);
   }
 
   newCategory(): Observable<Category> {
     const category = new Category();
-    this.categories.push(category);
 
     return of(category);
+  }
+
+  saveCategory(category: Category): void {
+    if (Category.last_index >= 1) {
+      Category.last_index++;
+    } else {
+      Category.last_index = 1;
+    }
+
+    category.id = Category.last_index;
+    category.timestamp = new Date();
+
+    this.categories.push(category);
+  }
+
+  updateCategory(category: Category): void {
+    const cf = this.categories.find(c => c.id === category.id);
+    const ci = this.categories.indexOf(cf);
+
+    this.categories[ci] = category;
   }
 
   deleteCategory(id: number): void {

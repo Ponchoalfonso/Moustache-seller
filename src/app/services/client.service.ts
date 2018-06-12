@@ -21,14 +21,35 @@ export class ClientService {
   }
 
   getClient(id: number): Observable<Client> {
-    return of(this.clients.find(client => client.id === id));
+    const client = this.clients.find(c => c.id === id);
+
+    return of(client);
   }
 
   newClient(): Observable<Client> {
     const client = new Client();
-    this.clients.push(client);
 
     return of(client);
+  }
+
+  saveClient(client: Client): void {
+    if (Client.last_index >= 1) {
+      Client.last_index++;
+    } else {
+      Client.last_index = 1;
+    }
+
+    client.id = Client.last_index;
+    client.timestamp = new Date();
+
+    this.clients.push(client);
+  }
+
+  updateClient(client: Client): void {
+    const cf = this.clients.find(c => c.id === client.id);
+    const ci = this.clients.indexOf(cf);
+
+    this.clients[ci] = client;
   }
 
   deleteClient(id: number): void {
