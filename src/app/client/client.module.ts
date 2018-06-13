@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 // Routing module
 import { AppRoutingModule } from '../app-routing.module';
 // Components
@@ -11,7 +12,8 @@ import { ClientEditComponent } from './client-edit/client-edit.component';
 @NgModule({
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   declarations: [
     ClientIndexComponent,

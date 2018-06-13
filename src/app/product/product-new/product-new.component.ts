@@ -30,7 +30,6 @@ export class ProductNewComponent implements OnInit {
   saveProduct(): void {
     this.productService.saveProduct(this.product);
     this.router.navigateByUrl('/products/' + this.product.id);
-
   }
 
   toggle(): void {

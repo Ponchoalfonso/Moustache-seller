@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from '../../classes/client';
+import { ClientService } from '../../services/client.service';
+
+// Sidebar control
+import { sidebar } from '../../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-client-index',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientIndexComponent implements OnInit {
 
-  constructor() { }
+  sidebar = sidebar;
+  clients: Client[];
+
+  constructor(private clientService: ClientService) { }
 
   ngOnInit() {
+    this.getClients();
+  }
+
+  getClients(): void {
+    this.clientService.getClients().subscribe(clients => this.clients = clients);
+  }
+
+  deleteClient(id: number): void {
+    this.clientService.deleteClient(id);
+  }
+
+  toggle() {
+    this.sidebar.state = this.sidebar.state === 'active' ? 'inactive' : 'active';
   }
 
 }

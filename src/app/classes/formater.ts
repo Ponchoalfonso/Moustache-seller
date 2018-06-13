@@ -22,4 +22,11 @@ export class Formater {
 
     return s;
   }
+
+  static stringToDate(sdate: string): Date {
+    const dateValues = sdate.split('-');
+    const date = new Date(+dateValues[0], +dateValues[1] - 1, +dateValues[2]);
+
+    return date;
+  }
 }
