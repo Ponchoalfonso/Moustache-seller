@@ -14,9 +14,14 @@ export class Client {
   public get gender() {
     return this._gender;
   }
+  public stringBirthdate: string;
   public birthdate: Date;
   public get age() {
-    const age: number = (Date.now() - this.birthdate.getMilliseconds()) / (1000 * 3600 * 24) / 365;
+    let age: number;
+
+    age = (Date.now() - this.birthdate.getTime());
+    age = age / 1000 / 60 / 60 / 24 / 365;
+    age = Math.floor(age);
 
     return age;
   }

@@ -48,8 +48,9 @@ export class SaleShowComponent implements OnInit {
   }
 
   getProducts(): void {
-    for (let i = 0; i < this.sale.productsQuantity.length ; i++) {
-      this.productService.getProduct(this.sale.productsQuantity[i])
+    this.products = [];
+    for (let i = 0; i < this.sale.products_id.length ; i++) {
+      this.productService.getProduct(this.sale.products_id[i])
         .subscribe(product => this.products.push(product));
     }
   }

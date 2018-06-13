@@ -1,3 +1,88 @@
-<p>
-  client-show works!
-</p>
+<header>
+  <div class="title">
+    <span class="icon-hipster"></span>
+    <h1>Moustache seller</h1>
+  </div>
+  <nav class="activities-bar">
+    <div class="zone-name">
+      <h2>Clientes</h2>
+    </div>
+    <ul class="user-options">
+      <li>Alfonso Valencia</li>
+      <li class="toggle-options" (click)="this.toggle()"><span class="icon-menu"></span></li>
+    </ul>
+  </nav>
+</header>
+<div class="content-area">
+  <div class="navigation-wrapper">
+    <nav class="navigation">
+      <ul>
+        <a routerLink="/clients"><li><span class="icon-profile"></span> Registros</li></a>
+        <a routerLink="/clients/new"><li><span class="icon-user-plus"></span> Nuevo</li></a>
+        <li *ngIf="client" class="selected"><span class="icon-user"></span> Cliente clt-<span class="id">{{client.id}}</span></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="show-wrapper">
+    <section class="show-area">
+      <div class="show-title">
+        <h3><span class="icon-file-text"></span> Mostrando información del cliente</h3>
+      </div>
+      <div class="show" *ngIf="client">
+        <div class="buttons-wrapper">
+          <div class="buttons">
+            <div class="button">
+              <a routerLink="/clients/{{client.id}}/edit"><span class="icon-pencil"></span> Editar</a>
+            </div>
+            <div class="button">
+              <button (click)="deleteClient(client.id)"><span class="icon-bin"></span> Eliminar</button>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Nombre</label>
+          <p>{{client.name}}</p>
+        </div>
+        <div class="field">
+          <label>Apellidos</label>
+          <p>{{client.lastName}}</p>
+        </div>
+        <div class="field">
+          <label>Género</label>
+          <p>{{client.gender}}</p>
+        </div>
+        <div class="field">
+          <label>Fecha de nacimiento</label>
+          <p>{{formatDate(client.birthdate)}}</p>
+        </div>
+        <div class="field">
+          <label>Edad</label>
+          <p>{{client.age}} años</p>
+        </div>
+        <div class="field">
+          <label>Correo electrónico</label>
+          <p>{{client.email}}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="indexer-wrapper">
+    <section class="indexer-area">
+      <div class="indexer-title">
+        <h3><span class="icon-file-text"></span> Listando compras del cliente</h3>
+      </div>
+      <div class="indexer">
+        <div *ngFor="let sale of sales" class="record">
+          <div class="information">
+            <p>Fecha: <span>{{formatDate(sale.timestamp)}}</span></p>
+          </div>
+          <div class="buttons">
+            <div class="button">
+              <a routerLink="/sales/{{product.id}}"><span class="icon-eye"></span> Ver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
