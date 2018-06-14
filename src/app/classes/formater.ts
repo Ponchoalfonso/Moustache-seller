@@ -29,4 +29,17 @@ export class Formater {
 
     return date;
   }
+
+  static formatTime(date: Date): string {
+    return Formater.pad(date.getHours(), 2) + ':' + Formater.pad(date.getMinutes(), 2);
+  }
+
+  static maxLength(value: string, max: number): string {
+    if (value.length >= max) {
+      return value.substr(0, max) + '...';
+    } else {
+      return value;
+    }
+  }
+
 }

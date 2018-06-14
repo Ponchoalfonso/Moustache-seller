@@ -14,7 +14,9 @@ export class ProductIndexComponent implements OnInit {
   products: Product[];
   sidebar = sidebar;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {
+    this.sidebar.zone = 1;
+  }
 
   ngOnInit() {
     this.getProducts();

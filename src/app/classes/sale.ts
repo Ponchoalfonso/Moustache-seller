@@ -6,11 +6,13 @@ export class Sale {
   public products_id: number[];
   public productsQuantity: number[];
   public payment_id: number;
+  public isPaid: boolean;
   public timestamp: Date;
 
   public constructor() {
     this.products_id = [];
     this.productsQuantity = [];
+    this.isPaid = false;
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
-export let sidebar = { state: 'inactive'};
+export let sidebar = { state: 'inactive', zone: -1};
 
 @Component({
   selector: 'app-sidebar',

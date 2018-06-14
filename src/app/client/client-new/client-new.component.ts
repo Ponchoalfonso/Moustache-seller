@@ -17,7 +17,9 @@ export class ClientNewComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private router: Router,
-  ) { }
+  ) {
+    this.sidebar.zone = 2;
+  }
 
   ngOnInit() {
     this.newClient();

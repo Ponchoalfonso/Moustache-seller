@@ -23,7 +23,9 @@ export class SaleIndexComponent implements OnInit {
   constructor(
     private saleService: SaleService,
     private paymentService: PaymentService
-  ) { }
+  ) {
+    this.sidebar.zone = 3;
+  }
 
   ngOnInit() {
     this.getPaidSales();

@@ -17,7 +17,9 @@ export class ProductNewComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private router: Router
-  ) { }
+  ) {
+    this.sidebar.zone = 1;
+  }
 
   ngOnInit() {
     this.newProduct();

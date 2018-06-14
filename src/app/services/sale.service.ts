@@ -26,20 +26,15 @@ export class SaleService {
   }
 
   getSalesWhere(property: string, value: any): Observable<Sale[]> {
-    const obj = new Sale();
-    const properties = Object.keys(obj);
-    const propertyIndex = properties.indexOf(property);
-    let values = [];
-
-    for (let i; i < this.sales.length; i++) {
-      values.push(Object.values(this.sales[i]));
-    }
-
-    values = values.filter(val => val[propertyIndex] === value);
-
     const sales: Sale[] = [];
-    for (let i; i < values.length; i++) {
-      sales.push(this.sales.find(sale => sale.id === values[i].id));
+
+    for (let i = 0; i < this.sales.length; i++) {
+      const sale = this.sales[i];
+      for (const p in sale) {
+        if (p === property && sale[p] === value) {
+          sales.push(sale);
+        }
+      }
     }
 
     return of(sales);

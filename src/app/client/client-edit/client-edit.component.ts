@@ -23,7 +23,9 @@ export class ClientEditComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router
-  ) { }
+  ) {
+    this.sidebar.zone = 2;
+  }
 
   ngOnInit() {
     this.getClient();

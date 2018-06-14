@@ -21,7 +21,9 @@ export class ProductEditComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private router: Router
-  ) { }
+  ) {
+    this.sidebar.zone = 1;
+  }
 
   ngOnInit() {
     this.getProduct();

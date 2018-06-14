@@ -19,7 +19,9 @@ export class ProductShowComponent implements OnInit {
     private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.sidebar.zone = 1;
+  }
 
   ngOnInit() {
     this.getProduct();

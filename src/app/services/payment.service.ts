@@ -26,20 +26,16 @@ export class PaymentService {
   }
 
   getPaymentsWhere(property: string, value: any): Observable<Payment[]> {
-    const obj = new Payment();
-    const properties = Object.keys(obj);
-    const propertyIndex = properties.indexOf(property);
-    let values = [];
-
-    for (let i; i < this.payments.length; i++) {
-      values.push(Object.values(this.payments[i]));
-    }
-
-    values = values.filter(val => val[propertyIndex] === value);
-
     const payments: Payment[] = [];
-    for (let i; i < values.length; i++) {
-      payments.push(this.payments.find(payment => payment.id === values[i].id));
+
+    for (let i = 0; i < this.payments.length; i++) {
+      const payment = this.payments[i];
+      for (const p in payment) {
+        if (p === property && payment[p] === value) {
+          console.log(p);
+          payments.push(payment);
+        }
+      }
     }
 
     return of(payments);

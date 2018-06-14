@@ -1,4 +1,3 @@
-
 <header>
   <div class="title">
     <span class="icon-hipster"></span>
@@ -7,13 +6,22 @@
   <nav class="activities-bar">
     <div class="sales-operations">
       <ul>
-        <li class="sale-button"><span class="icon-plus"></span></li>
-        <li class="sale-button"><span class="icon-minus"></span></li>
+        <li (click)="newSale()" class="sale-button">
+          <span class="icon-plus"></span>
+        </li>
+        <li (click)="deleteSale()" class="sale-button">
+          <span class="icon-minus"></span>
+        </li>
       </ul>
     </div>
     <ul class="active-sales">
-      <li class="sale-button selected"><span class="sale-id">1</span><span class="sale-time">hh:mm</span></li>
-      <li class="sale-button"><span class="sale-id">2</span></li>
+      <li *ngFor="let sale of sales"class="sale-button"
+      [class.selected]="sale === selectedSale"
+      (click)="selectSale(sale.id)">
+        <span class="sale-id">{{sale.id}}</span>
+        <span *ngIf="sale === selectedSale"
+        class="sale-time">{{formatTime(sale.timestamp)}}</span>
+      </li>
     </ul>
     <ul class="user-options">
       <li>Alfonso Valencia</li>
@@ -24,29 +32,56 @@
 <div class="point-sales" fxFlexFill fxLayout="column">
   <div class="sale-keyboard-wrapper">
     <section class="current-sale">
+      <div class="empty" *ngIf="selectedSaleProducts.length < 1">
+        <p>
+          <span class="icon icon-cart"></span>
+          <span>Agregue los productos!</span>
+        </p>
+      </div>
       <div class="sale">
         <div class="added-products">
-          <div class="product selected">
-            <h2>Producto 1</h2>
-            <p>$<span class="prduct-total">34.00</span></p>
+          <div
+          *ngFor="let product of selectedSaleProducts"
+          [class.selected]="product === selectedProduct"
+          (click)="selectProduct(product.id)"
+          class="product">
+            <h2 class="tooltip">
+              {{maxLength(product.name, 34)}}
+              <span *ngIf="product.name.length > 35" class="tooltiptext">
+                {{product.name}}
+              </span>
+            </h2>
+            <p>
+              $<span class="prduct-total">{{
+                    (selectedSale.productsQuantity[
+                      selectedSale.products_id.indexOf(product.id)
+                    ] * product.price).toFixed(2)
+                }}</span>
+            </p>
             <ul class="characteristics">
-              <li><span class="quantity">2</span><span class="unit">(u)</span></li>
-              <li>a $<span class="price">17.00</span> <span class="per-unit">c/u</span></li>
+              <li>
+                <span class="quantity">{{
+                    selectedSale.productsQuantity[
+                      selectedSale.products_id.indexOf(product.id)
+                    ]
+                  }}</span>
+                <span class="unit">(u)</span>
+              </li>
+              <li>
+                a $<span class="price">{{product.price.toFixed(2)}}</span>
+                <span class="per-unit">c/u</span>
+              </li>
             </ul>
           </div>
-          <div class="product">
-            <h2>Producto 2</h2>
-            <p>$<span class="prduct-total">48.00</span></p>
-              <ul class="characteristics">
-                <li><span class="quantity">4</span><span class="unit">(u)</span></li>
-                <li>a $<span class="price">12.00</span> <span class="per-unit">c/u</span></li>
-              </ul>
-          </div>
         </div>
-        <div class="totals">
+        <div *ngIf="selectedSaleProducts.length > 0" class="totals">
           <ul>
-            <li class="total">Total: $<span id="sale-total">95.12</span></li>
-            <li>IVA: $<span id="taxes">13.12</span></li>
+            <li class="total">Total: $<span id="sale-total">{{
+                selectedSalePayment.total.toFixed(2)
+            }}</span></li>
+            <li>IVA: $<span id="taxes">{{
+              selectedSalePayment.taxes.toFixed(2)
+            }}</span></li>
           </ul>
         </div>
       </div>
@@ -56,28 +91,36 @@
         <table class="keys">
           <tbody>
             <tr>
-              <td colspan="3" class="corner-1 sale-client"><span class="icon-user"></span>Cliente</td>
-              <td class="num-key">1</td>
-              <td class="num-key">2</td>
-              <td class="num-key">3</td>
-              <td rowspan="2" class="corner-2">Cant.</td>
+              <td colspan="3" class="corner-1 sale-client">
+                <span class="icon-user"></span>Cliente
+              </td>
+              <td class="num-key" (click)="changeQuantity('1')">1</td>
+              <td class="num-key" (click)="changeQuantity('2')">2</td>
+              <td class="num-key" (click)="changeQuantity('3')">3</td>
+              <td rowspan="2" class="corner-2 special selected">Cant.</td>
             </tr>
             <tr>
-              <td rowspan="3" colspan="3" id="pay"class="corner-4"><span class="icon-circle-right"></span><span>Pagar</span></td>
-              <td class="num-key">4</td>
-              <td class="num-key">5</td>
-              <td class="num-key">6</td>
+              <td rowspan="3" colspan="3" id="pay"class="corner-4">
+                <span class="icon-circle-right"></span><span>Pagar</span>
+              </td>
+              <td class="num-key" (click)="changeQuantity('4')">4</td>
+              <td class="num-key" (click)="changeQuantity('5')">5</td>
+              <td class="num-key" (click)="changeQuantity('6')">6</td>
             </tr>
             <tr>
-              <td class="num-key">7</td>
-              <td class="num-key">8</td>
-              <td class="num-key">9</td>
-              <td rowspan="2" class="corner-3">Precio</td>
+              <td class="num-key" (click)="changeQuantity('7')">7</td>
+              <td class="num-key" (click)="changeQuantity('8')">8</td>
+              <td class="num-key" (click)="changeQuantity('9')">9</td>
+              <td rowspan="2" class="special corner-3" (click)="removeProduct()">
+                Quitar
+              </td>
             </tr>
             <tr>
-              <td class="num-key bottom">.</td>
-              <td class="num-key bottom">0</td>
-              <td class="num-key bottom"><span class="icon-backspace"></span></td>
+              <td class="num-key bottom" (click)="changeQuantity('.')">.</td>
+              <td class="num-key bottom" (click)="changeQuantity('0')">0</td>
+              <td class="num-key bottom" (click)="changeQuantity('bs')">
+                <span class="icon-backspace"></span>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -97,14 +140,20 @@
         </div>
       </div>
       <div class="products">
-        <div class="product">
+        <div *ngFor="let product of products" class="product"
+        (click)="addProductToSale(product.id)">
           <!-- img src="images/image-1.jpg" alt="" !-->
           <div class="img">
             <span class="icon-images"></span>
           </div>
           <div class="product-info">
-            <h5>Producto 1</h5>
-            <p>$<span>17.00</span></p>
+            <h5 class="tooltip">
+              {{maxLength(product.name, 11)}}
+              <span *ngIf="product.name.length > 12" class="tooltiptext">
+                {{product.name}}
+              </span>
+            </h5>
+            <p>$<span>{{product.price.toFixed(2)}}</span></p>
           </div>
         </div>
       </div>

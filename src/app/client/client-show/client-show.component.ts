@@ -27,7 +27,9 @@ export class ClientShowComponent implements OnInit {
     private saleService: SaleService,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+    this.sidebar.zone = 2;
+  }
 
   ngOnInit() {
     this.getClient();

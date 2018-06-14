@@ -22,6 +22,7 @@ export class Payment {
   public constructor() {
     this.taxPercent = 16;
     this.isPaid = false;
+    this.amount = 0;
   }
 
   public validate(givenAmount: number): boolean {

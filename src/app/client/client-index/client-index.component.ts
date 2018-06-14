@@ -15,7 +15,9 @@ export class ClientIndexComponent implements OnInit {
   sidebar = sidebar;
   clients: Client[];
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService) {
+    this.sidebar.zone = 2;
+  }
 
   ngOnInit() {
     this.getClients();

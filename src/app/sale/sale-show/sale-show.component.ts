@@ -29,7 +29,9 @@ export class SaleShowComponent implements OnInit {
     private paymentService: PaymentService,
     private productService: ProductService,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+    this.sidebar.zone = 3;
+  }
 
   ngOnInit() {
     this.getSale();
