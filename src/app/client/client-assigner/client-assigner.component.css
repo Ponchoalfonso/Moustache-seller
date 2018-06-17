@@ -1,0 +1,85 @@
+/* * * * Indexer * * * */
+
+.indexer-wrapper {
+    position: fixed;
+    width: 100%;
+    flex: 1 1 auto;
+    margin-top: 48px;
+    background-color: white;
+    height: 100%;
+}
+
+.indexer-area, .assigned-client {
+    width: 65%;
+    margin: 10px auto 50px auto;
+    border-radius: 2px;
+    border: solid #e3e3ec 1px;
+    overflow: overlay;
+}
+
+.indexer-area .indexer-title, .assigned-client .head {
+    background-color: #eeeef8;
+    border-bottom: solid #e3e3ec 1px;
+}
+
+.indexer-area .indexer-title h3, .assigned-client .head h2 {
+    margin: 0;
+    padding: 12px 0 12px 30px;
+    font-size: 16px;
+}
+
+.indexer-area .-indexer-title span, .assigned-client .head span {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.indexer .record {
+    display: flex;
+    padding: 10px;
+    color: #666666;
+}
+
+.information {
+    display: flex;
+    margin: auto 0 auto 0;
+}
+
+.information h4, .indexer .record .information p {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    margin-right: 20px;
+}
+
+.buttons {
+    display: flex;
+    margin-left: auto;
+}
+
+.button {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.back {
+  padding: 20px;
+}
+
+.button a, .button button {
+    transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    color: #666666;
+    display: block;
+    text-decoration: none;
+    background-color: #eeeef8;
+    border: #e3e3ec solid 1px;
+    padding: 8px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.button a:hover, .button button:hover {
+    background-color: #e3e3ec;
+}

@@ -13,6 +13,8 @@ import { Formater } from '../classes/formater';
 // Sidebar
 import { sidebar } from '../sidebar/sidebar.component';
 
+export const toggles = {payment: false, clients: false};
+
 @Component({
   selector: 'app-point-sales',
   templateUrl: './point-sales.component.html',
@@ -27,6 +29,7 @@ export class PointSalesComponent implements OnInit {
   selectedSalePayment: Payment;
   selectedProduct: Product;
   sidebar = sidebar;
+  toggles = toggles;
 
   constructor(
     private productService: ProductService,
@@ -46,12 +49,17 @@ export class PointSalesComponent implements OnInit {
     } else if (this.sales.length > 0) {
       this.selectSale(this.sales[0].id);
     }
+    if (this.toggles.clients) {
+      this.toggleClients();
+    }
+    if (this.toggles.payment) {
+      this.togglePayment();
+    }
   }
 
   getUnpaidSales() {
     this.saleService.getSalesWhere('isPaid', false)
       .subscribe(sales => this.sales = sales);
-
   }
 
   getProducts(): void {
@@ -198,6 +206,22 @@ export class PointSalesComponent implements OnInit {
 
   toggle() {
     this.sidebar.state = this.sidebar.state === 'active' ? 'inactive' : 'active';
+  }
+
+  toggleClients(): void {
+    if (this.toggles.clients) {
+      this.toggles.clients = false;
+    } else {
+      this.toggles.clients = true;
+    }
+  }
+
+  togglePayment(): void {
+    if (this.toggles.payment) {
+      this.toggles.payment = false;
+    } else {
+      this.toggles.payment = true;
+    }
   }
 
 }

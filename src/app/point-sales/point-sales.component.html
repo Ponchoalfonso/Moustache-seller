@@ -91,7 +91,8 @@
         <table class="keys">
           <tbody>
             <tr>
-              <td colspan="3" class="corner-1 sale-client">
+              <td colspan="3" class="corner-1 sale-client"
+              (click)="toggleClients()">
                 <span class="icon-user"></span>Cliente
               </td>
               <td class="num-key" (click)="changeQuantity('1')">1</td>
@@ -159,3 +160,5 @@
       </div>
   </section>
 </div>
+<app-client-assigner [sale]="selectedSale" *ngIf="toggles.clients">
+</app-client-assigner>

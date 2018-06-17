@@ -1,0 +1,46 @@
+<div class="indexer-wrapper">
+  <div class="buttons back">
+    <div class="button">
+      <button (click)="toggleClients()">
+        <span class="icon-spinner11"></span> Volver
+      </button>
+    </div>
+  </div>
+  <section class="assigned-client">
+    <div class="head" *ngIf="assignedClient === undefined">
+      <h2>
+        <span class="icon-sad"></span>
+        No se ha asignado ningún cliente a esta venta
+      </h2>
+    </div>
+    <div class="head" *ngIf="assignedClient !== undefined">
+      <h2><span class="icon-grin"></span> Cliente seleccionado:</h2>
+    </div>
+    <div class="information" *ngIf="assignedClient !== undefined">
+      <p>Nombre: <span>{{assignedClient.name}}</span></p>
+      <p>Apellidos: <span>{{assignedClient.lastName}}</span></p>
+      <p>Edad: <span>{{assignedClient.age}}</span></p>
+    </div>
+  </section>
+  <section class="indexer-area">
+    <div class="indexer-title">
+      <h3><span class="icon-user"></span> Mostrando clientes</h3>
+    </div>
+    <div class="indexer">
+      <div *ngFor="let client of clients" class="record">
+        <div class="information">
+          <p>Nombre: <span>{{client.name}}</span></p>
+          <p>Apellidos: <span>{{client.lastName}}</span></p>
+          <p>Edad: <span>{{client.age}}</span></p>
+        </div>
+        <div class="buttons">
+          <div class="button">
+            <button (click)="assignClientToSale(client.id)">
+              <span class="icon-user-check"></span> Seleccionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

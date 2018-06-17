@@ -13,44 +13,45 @@
     cursor: pointer;
     border-radius: 100%;
   }
-  
+
   #close:hover {
     color: #a82727;
   }
-  
+
   .app-navigation {
     position: fixed;
+    z-index: 2;
     background-color: #ffffff;
     width: 350px;
     height: 100%;
     box-shadow: 1px 1px 10px #171e2b;
   }
-  
+
   .app-navigation .app-title {
     padding-bottom: 5%;
   }
-  
+
   .app-navigation .app-title h6 {
     text-align: center;
     font-size: 18px;
     margin: 0;
     padding: 0;
   }
-  
+
   .app-navigation .app-title img {
     display: block;
     margin: 0 auto;
     width: 30%;
     height: 33.75%;
   }
-  
+
   .app-navigation ul {
     margin: 0;
     padding: 0;
     overflow-y: overlay;
     white-space: nowrap;
   }
-  
+
   .app-navigation ul li {
     transition: background-color 0.2s ease;
     -moz-transition: background-color 0.2s ease;
@@ -61,18 +62,18 @@
     border-top:#dbdbdb solid 1px;
     cursor: pointer;
   }
-  
+
   .app-navigation ul li:hover {
     background-color: #171e2b;
     color: white;
   }
-  
+
   .app-navigation ul li span{
     display: inline-block;
     margin-right: 10px;
     font-size: 19px;
   }
-  
+
   .app-navigation ul .selected {
     font-weight: bold;
     background-color: #171e2b;

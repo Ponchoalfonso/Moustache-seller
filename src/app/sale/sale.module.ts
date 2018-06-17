@@ -5,6 +5,7 @@ import { AppRoutingModule } from '../app-routing.module';
 // Components
 import { SaleIndexComponent } from './sale-index/sale-index.component';
 import { SaleShowComponent } from './sale-show/sale-show.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   imports: [
@@ -13,11 +14,13 @@ import { SaleShowComponent } from './sale-show/sale-show.component';
   ],
   declarations: [
     SaleIndexComponent,
-    SaleShowComponent
+    SaleShowComponent,
+    PaymentComponent
   ],
   exports: [
     SaleIndexComponent,
-    SaleShowComponent
+    SaleShowComponent,
+    PaymentComponent
   ]
 })
 export class SaleModule { }

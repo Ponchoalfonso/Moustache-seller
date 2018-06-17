@@ -8,6 +8,7 @@ import { ClientIndexComponent } from './client-index/client-index.component';
 import { ClientShowComponent } from './client-show/client-show.component';
 import { ClientNewComponent } from './client-new/client-new.component';
 import { ClientEditComponent } from './client-edit/client-edit.component';
+import { ClientAssignerComponent } from './client-assigner/client-assigner.component';
 
 @NgModule({
   imports: [
@@ -20,12 +21,14 @@ import { ClientEditComponent } from './client-edit/client-edit.component';
     ClientShowComponent,
     ClientNewComponent,
     ClientEditComponent,
+    ClientAssignerComponent,
   ],
   exports: [
     ClientIndexComponent,
     ClientShowComponent,
     ClientNewComponent,
     ClientEditComponent,
+    ClientAssignerComponent,
   ]
 })
 export class ClientModule { }

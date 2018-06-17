@@ -45,8 +45,10 @@ export class SaleShowComponent implements OnInit {
   }
 
   getPayment(): void {
-    this.paymentService.getPayment(this.sale.id)
-      .subscribe(payment => this.payment = payment);
+    if (this.sale !== undefined) {
+      this.paymentService.getPayment(this.sale.id)
+        .subscribe(payment => this.payment = payment);
+    }
   }
 
   getProducts(): void {
