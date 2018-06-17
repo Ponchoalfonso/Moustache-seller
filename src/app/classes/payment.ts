@@ -6,32 +6,37 @@ export class Payment {
   public amount: number;
   public givenAmount: number;
   private taxPercent: number;
-  public isPaid: boolean;
+  public validated: boolean;
   public validationDate: Date;
   public timestamp: Date;
-  public get taxes(): number {
-      return this.amount * this.taxPercent / 100;
-  }
-  public get total(): number {
-      return this.amount + this.taxes;
-  }
-  public get change(): number {
-      return this.givenAmount - this.total;
-  }
 
   public constructor() {
     this.taxPercent = 16;
-    this.isPaid = false;
+    this.validated = false;
     this.amount = 0;
+  }
+
+  public getTaxes(): number {
+      return this.amount * this.taxPercent / 100;
+  }
+
+  public getTotal(): number {
+      return this.amount + this.getTaxes();
+  }
+
+  public getChange(): number {
+      return this.givenAmount - this.getTotal();
   }
 
   public validate(givenAmount: number): boolean {
       this.givenAmount = givenAmount;
-      if (this.change >= 0) {
-          this.isPaid = true;
+
+      if (this.getChange() >= 0) {
+          this.validated = true;
           this.validationDate = new Date();
       }
 
-      return this.isPaid;
+      return this.validated;
   }
+
 }

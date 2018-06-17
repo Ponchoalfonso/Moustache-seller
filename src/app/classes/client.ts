@@ -1,3 +1,5 @@
+import { Sale } from './sale';
+
 export class Client {
 
   public static last_index: number;
@@ -5,18 +7,18 @@ export class Client {
   public id: number;
   public name: string;
   public lastName: string;
-  private _gender: string;
-  public set gender(index: string) {
-    const genders: string[] = ['Masculino', 'Femenino'];
-
-    this._gender = genders[parseInt(index, 10)];
-  }
-  public get gender() {
-    return this._gender;
-  }
+  public gender: string;
   public stringBirthdate: string;
   public birthdate: Date;
-  public get age() {
+  public email: string;
+  public sales: Sale[];
+  public timestamp: Date;
+
+  public constructor() {
+    this.sales = [];
+  }
+
+  public getAge() {
     let age: number;
 
     age = (Date.now() - this.birthdate.getTime());
@@ -25,12 +27,4 @@ export class Client {
 
     return age;
   }
-  public email: string;
-  public sales_id: number[];
-  public timestamp: Date;
-
-  public constructor() {
-    this.sales_id = [];
-  }
-
 }
