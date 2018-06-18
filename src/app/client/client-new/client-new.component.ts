@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// Services
 import { ClientService} from '../../services/client.service';
+// Classes
 import { Client } from '../../classes/client';
+import { Formater } from '../../classes/formater';
+// Control
 import { sidebar } from '../../sidebar/sidebar.component';
 
 @Component({
@@ -12,6 +16,7 @@ import { sidebar } from '../../sidebar/sidebar.component';
 export class ClientNewComponent implements OnInit {
 
   client: Client;
+  stringBirthdate: string;
   sidebar = sidebar;
 
   constructor(
@@ -30,6 +35,7 @@ export class ClientNewComponent implements OnInit {
   }
 
   saveClient(): void {
+    this.client.birthdate = Formater.stringToDate(this.stringBirthdate);
     this.clientService.saveClient(this.client);
     this.router.navigateByUrl('/clients/' + this.client.id);
   }

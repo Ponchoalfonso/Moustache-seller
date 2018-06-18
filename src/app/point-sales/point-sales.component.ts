@@ -9,11 +9,13 @@ import { Product } from '../classes/product';
 import { Payment } from '../classes/payment';
 import { Sale } from '../classes/sale';
 import { Client } from '../classes/client';
+import { ProductSale } from '../classes/product-sale';
 import { Formater } from '../classes/formater';
 // Sidebar
 import { sidebar } from '../sidebar/sidebar.component';
 
-export const toggles = {payment: false, clients: false};
+export const toggles = { payment: false, clients: false };
+export const point_sale_exports = { client: undefined };
 
 @Component({
   selector: 'app-point-sales',
@@ -25,20 +27,19 @@ export class PointSalesComponent implements OnInit {
   products: Product[];
   sales: Sale[];
   selectedSale: Sale;
-  selectedSaleProducts: Product[];
-  selectedSalePayment: Payment;
-  selectedProduct: Product;
+  selectedProductSale: ProductSale;
+  exports = point_sale_exports;
   sidebar = sidebar;
   toggles = toggles;
 
   constructor(
     private productService: ProductService,
     private paymentService: PaymentService,
-    private saleService: SaleService
+    private saleService: SaleService,
+    private clientService: ClientService
   ) {
     this.sidebar.zone = 0;
     this.sales = [];
-    this.selectedSaleProducts = [];
   }
 
   ngOnInit() {
@@ -73,13 +74,17 @@ export class PointSalesComponent implements OnInit {
     this.saleService.newSale().subscribe(sale => this.sales.push(sale));
     this.paymentService.newPayment().subscribe(p => payment = p);
     this.selectSale(this.sales[this.sales.length - 1].id);
-    this.selectedSale.payment_id = payment.id;
+    this.selectedSale.payment = payment;
   }
 
   deleteSale(): void {
+    if (this.exports.client !== undefined) {
+      const index = this.exports.client.sales.indexOf(this.selectedSale);
+      this.exports.client.sales.splice(index, 1);
+    }
     this.sales.splice(this.sales.indexOf(this.selectedSale), 1);
+    this.paymentService.deletePayment(this.selectedSale.payment.id);
     this.saleService.deleteSale(this.selectedSale.id);
-    this.paymentService.deletePayment(this.selectedSale.payment_id);
     if (this.sales.length < 1) {
       this.newSale();
     } else if (this.sales.length > 0) {
@@ -87,91 +92,38 @@ export class PointSalesComponent implements OnInit {
     }
   }
 
-  addProductToSale(id: number): void {
-    if (this.selectedSale !== undefined) {
-      const index = this.selectedSale.products_id.findIndex(pid => pid === id);
-
-      if (index === -1) {
-        const product = this.products.find(p => p.id === id);
-
-        this.selectedSale.products_id.push(id);
-        this.selectedSale.productsQuantity.push(1);
-        this.selectedSaleProducts.push(product);
-        this.selectedProduct = product;
-
-      } else if (index !== -1) {
-        this.selectedSale.productsQuantity[index]++;
-        this.selectedProduct = this.selectedSaleProducts[index];
-      }
-      this.updatePayment();
-    }
-  }
-
   selectSale(id: number): void {
     this.selectedSale = this.sales.find(sale => sale.id === id);
-    this.selectedSaleProducts = this.getSelectedSaleProducts();
-    this.paymentService.getPayment(this.selectedSale.payment_id)
-      .subscribe(payment => this.selectedSalePayment = payment);
-
-    const productId = this.selectedSale.products_id[0];
-    this.selectProduct(productId);
-
+    this.selectedProductSale = this.selectedSale.productsSale[0];
+    this.getAssignedClient();
   }
 
-  private getSelectedSaleProducts(): Product[] {
-    const products: Product[] = [];
-
-    for (let i = 0; i < this.selectedSale.products_id.length; i++) {
-      products.push(
-        this.products
-          .find(product => product.id === this.selectedSale.products_id[i])
-      );
+  addProductToSale(product: Product): void {
+    if (this.selectedSale !== undefined) {
+      this.selectedSale.addProduct(product);
+      this.selectedProductSale = this.selectedSale
+        .productsSale.find(ps => ps.product === product);
     }
-
-    return products;
-  }
-
-  private updatePayment(): void {
-    if (this.selectedSalePayment !== undefined) {
-      this.selectedSalePayment.amount = 0;
-      for (let i = 0; i < this.selectedSaleProducts.length; i++) {
-        this.selectedSalePayment.amount +=
-          (
-            this.selectedSaleProducts[i].price *
-            this.selectedSale.productsQuantity[i]
-          );
-      }
-    }
-  }
-
-  selectProduct(id): void {
-    this.selectedProduct = this.products.find(product => product.id === id);
   }
 
   removeProduct(): void {
-
-    if (this.selectedProduct !== undefined) {
-      const index = this.selectedSaleProducts.findIndex(
-        product => product.id === this.selectedProduct.id
-      );
-
-      this.selectedSale.products_id.splice(index, 1);
-      this.selectedSale.productsQuantity.splice(index, 1);
-      this.selectedSaleProducts.splice(index, 1);
-
-      const productId = this.selectedSale.products_id[0];
-      this.selectProduct(productId);
-
-      this.updatePayment();
+    if (this.selectedProductSale !== undefined) {
+      this.selectedSale.removeProduct(this.selectedProductSale);
+      if (this.selectedSale.productsSale.length > 0) {
+        this.selectedProductSale = this.selectedSale.productsSale[0];
+      }
     }
   }
 
+  selectProductSale(id): void {
+    this.selectedProductSale = this.selectedSale.productsSale
+      .find(ps => ps.id === id);
+  }
+
   changeQuantity(value: string): void {
-    if (this.selectedProduct !== undefined) {
+    if (this.selectedProductSale !== undefined) {
       const posibilities = '0123456789';
-      const index = this.selectedSale.products_id
-        .indexOf(this.selectedProduct.id);
-      let quantity = this.selectedSale.productsQuantity[index].toString();
+      let quantity = this.selectedProductSale.productQuantity.toString();
 
       if (value === '.') {
         if (quantity.indexOf(value) === -1) {
@@ -191,9 +143,20 @@ export class PointSalesComponent implements OnInit {
         quantity = '0';
       }
 
-      this.selectedSale.productsQuantity[index] = parseInt(quantity, 10);
-      this.updatePayment();
+      this.selectedSale.setProductQuantity(
+        this.selectedProductSale,
+        parseInt(quantity, 10)
+      );
     }
+  }
+
+  private getAssignedClient(): void {
+    let clients: Client[];
+    this.clientService.getClients()
+      .subscribe(c => clients = c);
+    this.exports.client = clients.find(
+      client => client.sales.indexOf(this.selectedSale) !== -1
+    );
   }
 
   formatTime(date: Date): string {

@@ -15,15 +15,14 @@ import { toggles } from '../../point-sales/point-sales.component';
 export class ClientAssignerComponent implements OnInit {
 
   @Input() sale: Sale;
+  @Input() imports: any;
   clients: Client[];
-  assignedClient: Client;
   toggles = toggles;
 
   constructor(private clientService: ClientService) { }
 
   ngOnInit() {
     this.getClients();
-    this.getAssginedClient();
   }
 
   getClients(): void {
@@ -31,22 +30,21 @@ export class ClientAssignerComponent implements OnInit {
       .subscribe(clients => this.clients = clients);
   }
 
-  private getAssginedClient(): void {
-    for (let i = 0; i < this.clients.length; i++) {
-      const index = this.clients[i].sales_id.findIndex(s => s === this.sale.id);
-      if (index !== -1) {
-        this.assignedClient = this.clients[i];
-        console.log(this.assignedClient);
-        break;
-      }
-    }
+  assignClientToSale(id: number): void {
+    this.unassignClient();
+    const client = this.clients.find(c => c.id === id);
+    client.sales.push(this.sale);
+    this.imports.client = client;
   }
 
-  assignClientToSale(id: number): void {
-    const client = this.clients.find(c => c.id === id);
-    console.log(client);
-
-    client.sales_id.push(this.sale.id);
+  unassignClient(): void {
+    if (this.imports.client !== undefined) {
+      const index = this.imports.client.sales.indexOf(this.sale);
+      if (index > -1) {
+        this.imports.client.sales.splice(index, 1);
+        this.imports.client = undefined;
+      }
+    }
   }
 
   toggleClients(): void {

@@ -7,19 +7,28 @@
     </div>
   </div>
   <section class="assigned-client">
-    <div class="head" *ngIf="assignedClient === undefined">
+    <div class="head" *ngIf="imports.client === undefined">
       <h2>
         <span class="icon-sad"></span>
         No se ha asignado ningún cliente a esta venta
       </h2>
     </div>
-    <div class="head" *ngIf="assignedClient !== undefined">
+    <div class="head" *ngIf="imports.client">
       <h2><span class="icon-grin"></span> Cliente seleccionado:</h2>
     </div>
-    <div class="information" *ngIf="assignedClient !== undefined">
-      <p>Nombre: <span>{{assignedClient.name}}</span></p>
-      <p>Apellidos: <span>{{assignedClient.lastName}}</span></p>
-      <p>Edad: <span>{{assignedClient.age}}</span></p>
+    <div class="record" *ngIf="imports.client">
+      <div class="information">
+        <p>Nombre: <span>{{imports.client.name}}</span></p>
+        <p>Apellidos: <span>{{imports.client.lastName}}</span></p>
+        <p>Edad: <span>{{imports.client.getAge()}}</span></p>
+      </div>
+      <div class="buttons">
+        <div class="button">
+          <button (click)="unassignClient()">
+            <span class="icon-minus"></span> Quitar
+          </button>
+        </div>
+      </div>
     </div>
   </section>
   <section class="indexer-area">
@@ -31,7 +40,7 @@
         <div class="information">
           <p>Nombre: <span>{{client.name}}</span></p>
           <p>Apellidos: <span>{{client.lastName}}</span></p>
-          <p>Edad: <span>{{client.age}}</span></p>
+          <p>Edad: <span>{{client.getAge()}}</span></p>
         </div>
         <div class="buttons">
           <div class="button">

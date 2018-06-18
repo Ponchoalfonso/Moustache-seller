@@ -57,7 +57,7 @@
         </div>
         <div class="field">
           <label>Edad</label>
-          <p>{{client.age}} años</p>
+          <p>{{client.getAge()}} años</p>
         </div>
         <div class="field">
           <label>Correo electrónico</label>
@@ -72,13 +72,14 @@
         <h3><span class="icon-file-text"></span> Listando compras del cliente</h3>
       </div>
       <div class="indexer">
-        <div *ngFor="let sale of sales" class="record">
+        <div *ngFor="let sale of client.sales" class="record">
           <div class="information">
             <p>Fecha: <span>{{formatDate(sale.timestamp)}}</span></p>
+            <p>Total: $<span>{{sale.getTotal().toFixed(2)}}</span></p>
           </div>
           <div class="buttons">
             <div class="button">
-              <a routerLink="/sales/{{product.id}}"><span class="icon-eye"></span> Ver</a>
+              <a routerLink="/sales/{{sale.id}}"><span class="icon-eye"></span> Ver</a>
             </div>
           </div>
         </div>

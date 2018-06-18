@@ -30,10 +30,11 @@
               <div *ngFor="let sale of sales" class="record">
                   <div class="information">
                       <p>Fecha: <span>{{Formater.dateFormat(sale.timestamp)}}</span></p>
+                      <p>Total: $<span>{{sale.getTotal().toFixed(2)}}</span></p>
                   </div>
                   <div class="buttons">
                       <div class="button">
-                          <a routerLink="/sales/{{product.id}}"><span class="icon-eye"></span> Ver</a>
+                          <a routerLink="/sales/{{sale.id}}"><span class="icon-eye"></span> Ver</a>
                       </div>
                   </div>
               </div>

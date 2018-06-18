@@ -38,9 +38,10 @@
         </div>
         <div class="field select-field">
           <label>Medida para venta</label>
-          <select [(ngModel)]="product.measureType">
-            <option value="0">Unidad</option>
-            <option value="1">Granel</option>
+          <select [(ngModel)]="product.measurement">
+            <option value="unitario">Unitario</option>
+            <option value="peso">Peso</option>
+            <option value="volumen">Volumen</option>
           </select>
         </div>
         <div class="submit">

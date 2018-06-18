@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 // Classes
 import { Client } from '../../classes/client';
+import { Formater } from '../../classes/formater';
 // Services
 import { ClientService } from '../../services/client.service';
 import { sidebar } from '../../sidebar/sidebar.component';
@@ -16,6 +17,7 @@ import { sidebar } from '../../sidebar/sidebar.component';
 export class ClientEditComponent implements OnInit {
 
   sidebar = sidebar;
+  stringBirthdate: string;
   client: Client;
 
   constructor(
@@ -37,19 +39,11 @@ export class ClientEditComponent implements OnInit {
     let client;
     this.clientService.getClient(id).subscribe(c => client = c);
 
-    const clientCopy = new Client();
-    clientCopy.id = client.id;
-    clientCopy.name = client.name;
-    clientCopy.lastName = client.lastName;
-    clientCopy.gender = genders.indexOf(client.gender).toString();
-    clientCopy.stringBirthdate = client.stringBirthdate;
-    clientCopy.timestamp = client.timestamp;
-    clientCopy.email = client.email;
-
-    this.client = clientCopy;
+    this.client = Object.assign({}, client);
   }
 
   updateClient(): void {
+    this.client.birthdate = Formater.stringToDate(this.stringBirthdate);
     this.clientService.updateClient(this.client);
     this.router.navigateByUrl('/clients/' + this.client.id);
   }

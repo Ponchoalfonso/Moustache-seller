@@ -7,6 +7,7 @@ import { ProductService } from '../../services/product.service';
 // Classes
 import { Sale } from '../../classes/sale';
 import { Payment } from '../../classes/payment';
+import { ProductSale } from '../../classes/product-sale';
 import { Product } from '../../classes/product';
 import { Formater } from '../../classes/formater';
 // Sidebar control
@@ -19,10 +20,8 @@ import { sidebar } from '../../sidebar/sidebar.component';
 })
 export class SaleShowComponent implements OnInit {
 
-  sidebar = sidebar;
   sale: Sale;
-  payment: Payment;
-  products: Product[];
+  sidebar = sidebar;
 
   constructor(
     private saleService: SaleService,
@@ -35,28 +34,11 @@ export class SaleShowComponent implements OnInit {
 
   ngOnInit() {
     this.getSale();
-    this.getPayment();
-    this.getProducts();
   }
 
   getSale(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.saleService.getSale(id).subscribe(sale => this.sale = sale);
-  }
-
-  getPayment(): void {
-    if (this.sale !== undefined) {
-      this.paymentService.getPayment(this.sale.id)
-        .subscribe(payment => this.payment = payment);
-    }
-  }
-
-  getProducts(): void {
-    this.products = [];
-    for (let i = 0; i < this.sale.products_id.length ; i++) {
-      this.productService.getProduct(this.sale.products_id[i])
-        .subscribe(product => this.products.push(product));
-    }
   }
 
   toggle() {

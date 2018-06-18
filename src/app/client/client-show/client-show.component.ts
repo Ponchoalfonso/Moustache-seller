@@ -7,7 +7,6 @@ import { Sale } from '../../classes/sale';
 import { Formater } from '../../classes/formater';
 // Services
 import { ClientService } from '../../services/client.service';
-import { SaleService } from '../../services/sale.service';
 // Sidebar
 import { sidebar } from '../../sidebar/sidebar.component';
 
@@ -20,11 +19,9 @@ export class ClientShowComponent implements OnInit {
 
   sidebar = sidebar;
   client: Client;
-  sales: Sale[];
 
   constructor(
     private clientService: ClientService,
-    private saleService: SaleService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -38,14 +35,6 @@ export class ClientShowComponent implements OnInit {
   getClient() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.clientService.getClient(id).subscribe(client => this.client = client);
-  }
-
-  getSales(): void {
-    this.sales = [];
-    for (let i = 0; i < this.client.sales_id.length ; i++) {
-      this.saleService.getSale(this.client.sales_id[i])
-        .subscribe(sale => this.sales.push(sale));
-    }
   }
 
   deleteClient(id: number): void {

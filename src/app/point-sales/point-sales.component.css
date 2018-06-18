@@ -230,7 +230,7 @@ html, body {
   line-height: 30px;
 }
 
-.keys .sale-client span{
+.keys .sale-client .icon-user{
   display: block;
   background-color: #ececec;
   overflow: hidden;
