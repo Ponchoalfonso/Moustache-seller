@@ -43,7 +43,7 @@
           <label>Total</label>
           <p>
             {{
-              payment.total
+              sale.total
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
@@ -55,24 +55,24 @@
         <h3><span class="icon-file-text"></span> Mostrando datos de pago</h3>
       </div>
       <div class="show" *ngIf="sale">
-        <div class="field">
+        <div class="field" *ngIf="sale.payment.validated">
           <label>Fecha validación de pago</label>
-          <p>{{Formater.dateFormat(payment.validationDate)}}</p>
+          <p>{{Formater.dateFormat(sale.payment.validationDate)}}</p>
         </div>
         <div class="field">
           <label>Monto a cobrar</label>
           <p>
             {{
-              payment.amount
+              sale.payment.amount
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
         </div>
         <div class="field">
-          <label>Impuestos (%{{payment.taxPercent}})</label>
+          <label>Impuestos ({{sale.payment.taxPercent}}%)</label>
           <p>
             {{
-              payment.taxes
+              sale.payment.getTaxes()
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
@@ -81,7 +81,7 @@
           <label>Monto + IVA</label>
           <p>
             {{
-              payment.total
+              sale.payment.getTotal()
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
@@ -90,7 +90,7 @@
           <label>Monto recibido</label>
           <p>
             {{
-              payment.givenAmount
+              sale.payment.givenAmount
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
@@ -99,7 +99,7 @@
           <label>Cambio</label>
           <p>
             {{
-              payment.change
+              sale.payment.getChange()
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
@@ -116,23 +116,23 @@
           </h3>
       </div>
       <div class="indexer">
-        <div *ngFor="let product of products" class="record">
+        <div *ngFor="let productSale of sale.productsSales" class="record">
           <div class="information">
-            <p>Nombre: <span>{{product.name}}</span></p>
+            <p>Nombre: <span>{{productSale.product.name}}</span></p>
             <p>Precio: $<span>
               {{
-                product.price.toLocaleString('en-IN', {
+                productSale.product.price.toLocaleString('en-IN', {
                   style: 'currency', currency: 'MXN'
                 })
               }} por
               {{
-                product.measureType
+                productSale.product.measurement
               }}
           </span></p>
             <p>
               Cantidad:
               {{
-                sale.productsQuantity[products.indexOf(product)]
+                productSale.quantity
               }}
           </p>
           </div>

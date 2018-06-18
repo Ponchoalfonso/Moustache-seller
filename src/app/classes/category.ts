@@ -1,14 +1,16 @@
+import { Product } from './product';
+
 export class Category {
 
   public static last_index: number;
 
   public id: number;
   public name: string;
-  public products_id: number[];
+  public products: Product[];
   public timestamp: Date;
 
   public constructor() {
-    this.products_id = new Array();
+    this.products = new Array();
   }
 
 }

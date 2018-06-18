@@ -39,7 +39,6 @@ export class ClientService {
       Client.last_index = 1;
     }
 
-    client.birthdate = Formater.stringToDate(client.stringBirthdate);
     client.id = Client.last_index;
     client.timestamp = new Date();
 
@@ -49,9 +48,6 @@ export class ClientService {
   updateClient(client: Client): void {
     const cf = this.clients.find(c => c.id === client.id);
     const ci = this.clients.indexOf(cf);
-
-    client.birthdate = Formater.stringToDate(client.stringBirthdate);
-    client.id = Client.last_index;
 
     this.clients[ci] = client;
   }

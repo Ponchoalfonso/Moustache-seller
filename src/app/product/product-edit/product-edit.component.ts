@@ -30,18 +30,11 @@ export class ProductEditComponent implements OnInit {
   }
 
   getProduct(): void {
-    const types: string[] = ['Unidad', 'Granel'];
     const id = +this.route.snapshot.paramMap.get('id');
     let product;
     this.productService.getProduct(id).subscribe(p => product = p);
 
-    const productCopy = new Product();
-    productCopy.id = product.id;
-    productCopy.name = product.name;
-    productCopy.measureType = types.indexOf(product.measureType).toString();
-    productCopy.timestamp = product.timestamp;
-
-    this.product = productCopy;
+    this.product = Object.assign({}, product);
   }
 
   updateProduct(): void {

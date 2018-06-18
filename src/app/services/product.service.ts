@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-
+// Sample data
+import { PRODUCTS } from '../sample-data';
 // Provided data
 import { Product } from '../classes/product';
 
@@ -13,6 +14,9 @@ export class ProductService {
 
   constructor() {
     this.products = [];
+    for (let i = 0; i < PRODUCTS.length; i++) {
+      this.products.push(PRODUCTS[i]);
+    }
    }
 
   getProducts(): Observable<Product[]> {
@@ -45,8 +49,7 @@ export class ProductService {
   }
 
   updateProduct(product: Product): void {
-    const pf = this.products.find(p => p.id === product.id);
-    const pi = this.products.indexOf(pf);
+    const pi = this.products.findIndex(p => p.id === product.id);
 
     this.products[pi] = product;
   }
