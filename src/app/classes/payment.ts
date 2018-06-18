@@ -14,6 +14,7 @@ export class Payment {
     this.taxPercent = 16;
     this.validated = false;
     this.amount = 0;
+    this.givenAmount = 0;
   }
 
   public getTaxes(): number {

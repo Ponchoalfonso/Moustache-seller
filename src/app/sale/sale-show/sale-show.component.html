@@ -22,7 +22,7 @@
         <a routerLink="/sales">
           <li><span class="icon-profile"></span> Registros</li>
         </a>
-        <li class="selected">
+        <li class="selected" *ngIf="sale">
           <span class="icon-coin-dollar"></span> Venta sle-
           <span class="id">{{sale.id}}</span>
         </li>
@@ -37,13 +37,13 @@
       <div class="show" *ngIf="sale">
         <div class="field">
           <label>Fecha</label>
-          <p>{{Formater.dateFormat(sale.timestamp)}}</p>
+          <p>{{dateFormat(sale.timestamp)}}</p>
         </div>
         <div class="field">
           <label>Total</label>
           <p>
             {{
-              sale.total
+              sale.getTotal()
                 .toLocaleString('en-IN', { style: 'currency', currency: 'MXN' })
             }}
           </p>
@@ -57,7 +57,7 @@
       <div class="show" *ngIf="sale">
         <div class="field" *ngIf="sale.payment.validated">
           <label>Fecha validación de pago</label>
-          <p>{{Formater.dateFormat(sale.payment.validationDate)}}</p>
+          <p>{{dateFormat(sale.payment.validationDate)}}</p>
         </div>
         <div class="field">
           <label>Monto a cobrar</label>
@@ -86,7 +86,7 @@
             }}
           </p>
         </div>
-        <div class="field">
+        <div class="field" *ngIf="sale.payment.givenAmount">
           <label>Monto recibido</label>
           <p>
             {{
@@ -115,8 +115,8 @@
             Listando productos de la venta
           </h3>
       </div>
-      <div class="indexer">
-        <div *ngFor="let productSale of sale.productsSales" class="record">
+      <div class="indexer" *ngIf="sale">
+        <div *ngFor="let productSale of sale.productsSale" class="record">
           <div class="information">
             <p>Nombre: <span>{{productSale.product.name}}</span></p>
             <p>Precio: $<span>
@@ -124,21 +124,18 @@
                 productSale.product.price.toLocaleString('en-IN', {
                   style: 'currency', currency: 'MXN'
                 })
-              }} por
-              {{
-                productSale.product.measurement
-              }}
+              }} c/u
           </span></p>
             <p>
               Cantidad:
               {{
-                productSale.quantity
-              }}
+                productSale.productQuantity
+              }}(u)
           </p>
           </div>
           <div class="buttons">
             <div class="button">
-              <a routerLink="/products/{{product.id}}">
+              <a routerLink="/products/{{productSale.product.id}}">
                 <span class="icon-eye"></span> Ver
               </a>
             </div>

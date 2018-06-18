@@ -41,6 +41,10 @@ export class SaleShowComponent implements OnInit {
     this.saleService.getSale(id).subscribe(sale => this.sale = sale);
   }
 
+  dateFormat(date: Date): string {
+    return Formater.dateFormat(date);
+  }
+
   toggle() {
     this.sidebar.state = this.sidebar.state === 'active' ? 'inactive' : 'active';
   }

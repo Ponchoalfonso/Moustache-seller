@@ -5,15 +5,19 @@
       <img src="assets/images/logo.png" alt="">
   </div>
   <ul>
-      <a routerLink="/"><li [class.selected]="sidebar.zone === 0">
+      <a routerLink="/"
+      (click)="toggle()"><li [class.selected]="sidebar.zone === 0">
         <span class="icon-cart"></span>Punto de ventas
       </li></a>
-      <a routerLink="/products"><li [class.selected]="sidebar.zone === 1">
+      <a routerLink="/products"
+      (click)="toggle()"><li [class.selected]="sidebar.zone === 1">
         <span class="icon-price-tags"></span>Productos</li></a>
-      <a routerLink="/clients"><li [class.selected]="sidebar.zone === 2">
+      <a routerLink="/clients"
+      (click)="toggle()"><li [class.selected]="sidebar.zone === 2">
         <span class="icon-user"></span>Clientes
       </li></a>
-      <a routerLink="/sales"><li [class.selected]="sidebar.zone === 3">
+      <a routerLink="/sales"
+      (click)="toggle()"><li [class.selected]="sidebar.zone === 3">
         <span class="icon-profile"></span>Ventas
       </li></a>
   </ul>
