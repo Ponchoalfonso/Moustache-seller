@@ -145,7 +145,7 @@ export class PointSalesComponent implements OnInit {
 
       this.selectedSale.setProductQuantity(
         this.selectedProductSale,
-        parseInt(quantity, 10)
+        parseFloat(quantity)
       );
     }
   }

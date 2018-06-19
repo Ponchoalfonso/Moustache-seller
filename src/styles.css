@@ -23,18 +23,25 @@ html {
 app-root, app-point-sales, app-product-index, app-product-new,
 app-product-show, app-product-edit, app-sale-index, app-sale-show,
 app-client-index, app-client-show, app-client-new, app-client-eidt,
-app-client-assigner {
+app-client-assigner, app-payment {
   display: flex;
   flex-flow: column;
   flex: 1 1 auto;
   background-color: #171e2b;
 }
 
-app-client-assigner {
+app-client-assigner, app-payment {
   position: fixed;
-  display: flex;
-  flex-flow: column;
 }
+
+app-client-assigner {
+  z-index: 3;
+}
+
+app-payment {
+  z-index: 2;
+}
+
 a {
   text-decoration: none;
   color: black;

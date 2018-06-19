@@ -110,7 +110,8 @@
               <td rowspan="2" class="corner-2 special selected">Cant.</td>
             </tr>
             <tr>
-              <td rowspan="3" colspan="3" id="pay"class="corner-4">
+              <td rowspan="3" colspan="3" id="pay"class="corner-4"
+              (click)="togglePayment()">
                 <span class="icon-circle-right"></span><span>Pagar</span>
               </td>
               <td class="num-key" (click)="changeQuantity('4')">4</td>
@@ -174,3 +175,7 @@
 [imports]="exports"
 *ngIf="toggles.clients">
 </app-client-assigner>
+<app-payment
+*ngIf="toggles.payment"
+[imports]="{ sale: selectedSale, sales: sales, client: exports.client }"
+></app-payment>

@@ -29,7 +29,7 @@
           <div class="indexer">
               <div *ngFor="let sale of sales" class="record">
                   <div class="information">
-                      <p>Fecha: <span>{{Formater.dateFormat(sale.timestamp)}}</span></p>
+                      <p>Fecha: <span>{{dateFormat(sale.timestamp)}}</span></p>
                       <p>Total: $<span>{{sale.getTotal().toFixed(2)}}</span></p>
                   </div>
                   <div class="buttons">

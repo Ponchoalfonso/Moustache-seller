@@ -1,0 +1,237 @@
+.wrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  flex: 1 1 auto;
+  margin-top: 48px;
+  background-color: #eeeef8;
+}
+
+/* * * * Head * * * */
+.head {
+  display: flex;
+  height: 60px;
+  background-color: white;
+  box-shadow: 1px 1px 10px #171e2b;
+}
+
+.head .title {
+  text-align: center;
+  margin: auto;
+}
+
+/* * * * Payment * * * */
+.payment {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 auto;
+}
+
+.payment .info {
+  text-align: center;
+  font-weight: bold;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.payment .info div {
+  border-radius: 4px;
+}
+
+.payment .info p {
+  display: inline-block;
+  width: 250px;
+  text-align: left;
+  padding: 2px 6px 2px 6px;
+}
+
+.payment .info .amount {
+  width: auto;
+  margin-right: 18px;
+  padding: 8px;
+}
+
+.payment .info .total, .payment .info .change {
+  background-color: white;
+}
+
+.payment .info .toPay {
+  background-color: #171e2b;
+  color: white;
+}
+
+.payment .info .toPay .amount {
+  background-color: white;
+  color: black;
+  border: solid 3px #171e2b;
+  border-radius: 6px;
+}
+
+/* * * * Botones * * * */
+.buttons {
+    display: flex;
+    margin-left: auto;
+}
+
+.back .button, .validate .button {
+  display: inline-block;
+  margin: auto 20px auto 20px;
+}
+
+.button a, .button button {
+    transition: background-color 0.2s ease;
+    -moz-transition: background-color 0.2s ease;
+    -o-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    color: #666666;
+    display: block;
+    text-decoration: none;
+    background-color: #eeeef8;
+    border: #e3e3ec solid 1px;
+    padding: 8px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.button a:hover, .button button:hover {
+    background-color: #e3e3ec;
+}
+
+.buttons.buttons {
+  margin: 0;
+}
+
+.buttons .go {
+  transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  background-color: #278657;
+  color: white;
+  border-color: #3b815e;
+}
+
+.buttons .go:hover {
+  background-color: #2da268;
+}
+
+/* * * * Keybord * * * */
+.key-board {
+  position: relative;
+  bottom: 0px;
+  color: #666666;
+  background-color: #dbdbdb;
+  border-top: #171e2b solid 4px;
+  text-align: center;
+  box-shadow: -1px 1px 10px #666666;
+}
+
+.key-board-wrapper {
+  display: inline-block;
+  text-align: center;
+  border-radius: 6px;
+  border: solid #666666 1px;
+  margin: 10px;
+}
+
+.keys {
+  border-collapse: collapse;
+  font-weight: bold;
+}
+
+.keys tbody{
+  border-radius: 6px;
+}
+
+.keys tbody td {
+  transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -webkit-transition: background-color 0.2s ease;
+  transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  -o-transition: color 0.2s ease;
+  -webkit-transition: color 0.2s ease;
+  border: solid #666666 1px;
+}
+
+.keys tbody td:hover {
+  background-color: #c4c4c4;
+  cursor: default;
+  color: white;
+}
+
+.keys .num-key {
+  text-align: center;
+  border-top: none;
+  width: 50px;
+  height: 55px;
+  font-size: 22px;
+}
+
+.keys tbody .special:hover {
+  background-color: #171e2b;
+}
+
+.keys .selected {
+  background-color: #171e2b;
+  color: white;
+}
+
+#pay {
+  width: 150px;
+  font-size: 22px;
+}
+
+.keys tbody .corner-1 {
+  border-top: none;
+  border-left: none;
+}
+
+.keys tbody .corner-2 {
+  border-top: none;
+  border-right: none;
+  width: 50px;
+}
+
+.keys tbody .corner-3 {
+  border-bottom: none;
+  border-right: none;
+  width: 50px;
+}
+
+.keys tbody .corner-4 {
+  border-bottom: none;
+  border-left: none;
+}
+
+.keys .sale-client {
+  line-height: 30px;
+}
+
+.keys .sale-client .icon-user{
+  display: block;
+  background-color: #ececec;
+  overflow: hidden;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  line-height: 30px;
+  float: right;
+  margin-right: 30px;;
+  padding: 0;
+}
+
+.keys #pay .icon-circle-right {
+  display: block;
+  font-size: 44px;
+  padding: 4px;
+}

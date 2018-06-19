@@ -1,3 +1,84 @@
-<p>
-  payment works!
-</p>
+<div class="wrapper">
+  <div class="content">
+    <div class="head">
+      <div class="buttons back">
+        <div class="button">
+          <button (click)="togglePayment()">
+            <span class="icon-spinner11"></span> Volver
+          </button>
+        </div>
+      </div>
+      <div class="title">
+        <h2>Pago</h2>
+      </div>
+      <div class="buttons validate">
+        <div class="button">
+          <button (click)="validate()"
+          [class.go]="payment.getChange() >= 0 && payment.getTotal() > 0">
+            <span class="icon-circle-right"></span> Validar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="payment">
+      <section class="info">
+        <div class="total">
+          <p>Cantidad a pagar: </p>
+          <p class="amount">${{payment.getTotal().toFixed(2)}}</p>
+        </div>
+        <div class="toPay">
+          <p>Monto recibido: </p>
+          <p class="amount">${{payment.givenAmount.toFixed(2)}}</p>
+        </div>
+        <div class="change" *ngIf="payment.getChange() >= 0">
+          <p>Cambio: </p>
+          <p class="amount">${{payment.getChange().toFixed(2)}}</p>
+        </div>
+      </section>
+      <section class="key-board">
+        <div class="key-board-wrapper">
+          <table class="keys">
+            <tbody>
+              <tr>
+                <td class="tooltip" colspan="3" class="corner-1 sale-client"
+                (click)="toggleClients()">
+                  <span class="icon-user"></span>
+                  <span *ngIf="imports.client === undefined">Cliente</span>
+                  <span *ngIf="imports.client">{{
+                    maxLength(imports.client.name, 12)
+                  }}</span>
+                  <span
+                  *ngIf="imports.client !== undefined && imports.client.name.length > 12"
+                  class="tooltiptext">
+                    {{imports.client.name}}
+                  </span>
+                </td>
+                <td class="num-key" (click)="changeAmount('1')">1</td>
+                <td class="num-key" (click)="changeAmount('2')">2</td>
+                <td class="num-key" (click)="changeAmount('3')">3</td>
+              </tr>
+              <tr>
+                <td rowspan="3" colspan="3" id="pay"class="corner-4"></td>
+                <td class="num-key" (click)="changeAmount('4')">4</td>
+                <td class="num-key" (click)="changeAmount('5')">5</td>
+                <td class="num-key" (click)="changeAmount('6')">6</td>
+              </tr>
+              <tr>
+                <td class="num-key" (click)="changeAmount('7')">7</td>
+                <td class="num-key" (click)="changeAmount('8')">8</td>
+                <td class="num-key" (click)="changeAmount('9')">9</td>
+              </tr>
+              <tr>
+                <td class="num-key bottom" (click)="changeAmount('.')">.</td>
+                <td class="num-key bottom" (click)="changeAmount('0')">0</td>
+                <td class="num-key bottom" (click)="changeAmount('bs')">
+                  <span class="icon-backspace"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

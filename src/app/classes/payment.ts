@@ -29,10 +29,9 @@ export class Payment {
       return this.givenAmount - this.getTotal();
   }
 
-  public validate(givenAmount: number): boolean {
-      this.givenAmount = givenAmount;
+  public validate(): boolean {
 
-      if (this.getChange() >= 0) {
+      if (this.getChange() >= 0 && this.getTotal() > 0) {
           this.validated = true;
           this.validationDate = new Date();
       }
